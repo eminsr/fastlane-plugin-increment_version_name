@@ -14,6 +14,7 @@ module Fastlane
         
         constant_name ||= params[:ext_constant_name]
         gradle_file_path ||= params[:gradle_file_path]
+        UI.message("constant_name: #{constant_name}")
         
         if !File.file?(gradle_file_path)
             UI.message(" -> No file exist at gradle file path: (#{gradle_file_path})!")
@@ -28,6 +29,9 @@ module Fastlane
               if line.include? constant_name and foundVersionName=="false"
                 versionComponents = line.strip.split(' ')
                 current_version = versionComponents[versionComponents.length-1].tr("\"","")
+                
+                UI.message("current_version: #{current_version}")
+                
                 if params[:version_name]
                   UI.verbose("Your current version (#{current_version}) does not respect the format A.B.C") unless current_version =~ /\d.\d.\d/
                   new_version_name = params[:version_name]
@@ -49,6 +53,9 @@ module Fastlane
                     new_version_name = version_array.join(".")
                   end
                 end
+                
+                UI.message("new_version_name: #{new_version_name}")
+                
                 line.replace line.sub(current_version, new_version_name.to_s)
                 temp_file.puts line
               else
