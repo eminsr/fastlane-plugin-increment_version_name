@@ -63,8 +63,11 @@ module Fastlane
           FileUtils.mv(temp_file.path, gradle_file_path)
           temp_file.unlink
         end
-        if foundVersionName != "true"
-            UI.user_error!("Unable to find the versionName")
+        if foundVersionName == "true"
+          Actions.lane_context["VERSION_NAME"]=new_version_name
+          UI.success("☝️ Version name has been changed to #{new_version_name}")
+        else
+          UI.user_error!("Unable to find the versionName 😭")
         end
       rescue => ex
         UI.error('Before being able to increment and read the versionName from your build.gradle, you first need to setup your project properly.')
@@ -116,7 +119,7 @@ module Fastlane
 
       def self.output
         [
-          ['version_name', 'The new version name of the project']
+          ['VERSION_NAME', 'The new version name of the project']
         ]
       end
       
