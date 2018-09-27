@@ -29,9 +29,9 @@ module Fastlane
               if line.include? constant_name and foundVersionName=="false"
                 versionComponents = line.strip.split(' ')
                 current_version = versionComponents[versionComponents.length-1].tr("\"","")
-                if params[:version_name]
+                if new_version_name
                   UI.verbose("Your current version (#{current_version}) does not respect the format A.B.C") unless current_version =~ /\d.\d.\d/
-                  new_version_name = params[:version_name]
+                  UI.message("new new_version_name: #{new_version_name}")
                 else
                   UI.user_error!("Your current version (#{current_version}) does not respect the format A.B.C") unless current_version =~ /\d+.\d+.\d+/
                   version_array = current_version.split(".").map(&:to_i)
@@ -49,6 +49,7 @@ module Fastlane
                     version_array[1] = version_array[2] = 0
                     new_version_name = version_array.join(".")
                   end
+                  UI.message("bump new_version_name: #{new_version_name}")
                 end
                 line.replace line.sub(current_version, new_version_name.to_s)
                 foundVersionName = "true"
@@ -106,7 +107,7 @@ module Fastlane
                                          type: String,
                                 default_value: nil),
               FastlaneCore::ConfigItem.new(key: :version_name,
-                                           env_name: "INCREMENTVERSIONNAMEVERSION_NAME",
+                                           env_name: "INCREMENTVERSIONNAME_VERSION_NAME",
                                            description: "Change to a specific version. This will replace the bump type value",
                                            optional: true),
               FastlaneCore::ConfigItem.new(key: :ext_constant_name,
