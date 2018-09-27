@@ -29,9 +29,8 @@ module Fastlane
               if line.include? constant_name and foundVersionName=="false"
                 versionComponents = line.strip.split(' ')
                 current_version = versionComponents[versionComponents.length-1].tr("\"","")
-                if new_version_name
+                if params[:version_name]
                   UI.verbose("Your current version (#{current_version}) does not respect the format A.B.C") unless current_version =~ /\d.\d.\d/
-                  UI.message("new new_version_name: #{new_version_name}")
                 else
                   UI.user_error!("Your current version (#{current_version}) does not respect the format A.B.C") unless current_version =~ /\d+.\d+.\d+/
                   version_array = current_version.split(".").map(&:to_i)
@@ -49,7 +48,6 @@ module Fastlane
                     version_array[1] = version_array[2] = 0
                     new_version_name = version_array.join(".")
                   end
-                  UI.message("bump new_version_name: #{new_version_name}")
                 end
                 line.replace line.sub(current_version, new_version_name.to_s)
                 foundVersionName = "true"
