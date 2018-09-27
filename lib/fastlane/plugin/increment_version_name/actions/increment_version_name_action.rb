@@ -50,7 +50,7 @@ module Fastlane
                   end
                 end
                 line.replace line.sub(current_version, new_version_name.to_s)
-                foundVersionCode = "true"
+                foundVersionName = "true"
                 temp_file.puts line
               else
                 temp_file.puts line
