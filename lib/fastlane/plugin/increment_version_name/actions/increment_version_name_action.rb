@@ -23,7 +23,7 @@ module Fastlane
         begin
           foundVersionName = "false"
           temp_file = Tempfile.new('fastlaneIncrementVersionName')
-          File.open(path, 'r') do |file|
+          File.open(gradle_file_path, 'r') do |file|
             file.each_line do |line|
               if line.include? constant_name and foundVersionName=="false"
                 versionComponents = line.strip.split(' ')
@@ -59,7 +59,7 @@ module Fastlane
           end
           temp_file.rewind
           temp_file.close
-          FileUtils.mv(temp_file.path, path)
+          FileUtils.mv(temp_file.path, gradle_file_path)
           temp_file.unlink
         end
         if foundVersionName != "true"
