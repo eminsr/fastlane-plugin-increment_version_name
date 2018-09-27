@@ -12,6 +12,7 @@ module Fastlane
       
       def self.run(params)
         
+        new_version_name ||= params[:version_name]
         constant_name ||= params[:ext_constant_name]
         gradle_file_path ||= params[:gradle_file_path]
         
