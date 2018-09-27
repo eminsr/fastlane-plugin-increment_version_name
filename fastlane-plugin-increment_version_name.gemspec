@@ -6,8 +6,8 @@ require 'fastlane/plugin/increment_version_name/version'
 Gem::Specification.new do |spec|
   spec.name          = 'fastlane-plugin-increment_version_name'
   spec.version       = Fastlane::IncrementVersionName::VERSION
-  spec.author        = %q{Jems}
-  spec.email         = %q{jeremy.toudic@gmail.com}
+  spec.author        = %q{fierysolid}
+  spec.email         = %q{schoen.jordan@gmail.com}
 
   spec.summary       = %q{Increment the version name of your android project.}
   spec.homepage      = "https://github.com/fierysolid/fastlane-plugin-increment_version_name"

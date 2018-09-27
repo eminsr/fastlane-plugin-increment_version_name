@@ -83,7 +83,7 @@ module Fastlane
       end
 
       def self.authors
-        ["Jems"]
+        ["fierysolid"]
       end
 
       def self.available_options
