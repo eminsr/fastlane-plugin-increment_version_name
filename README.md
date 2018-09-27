@@ -1,18 +1,18 @@
-# increment_version_code plugin
+# increment_version_name plugin
 
-[![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-increment_version_code)
+[![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-increment_version_name)
 
 ## Getting Started
 
-This project is a [fastlane](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-increment_version_code`, add it to your project by running:
+This project is a [fastlane](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-increment_version_name`, add it to your project by running:
 
 ```bash
-fastlane add_plugin increment_version_code
+fastlane add_plugin increment_version_name
 ```
 
-## About increment_version_code
+## About increment_version_name
 
-Increment the version code of your android project.
+Increment the version name of your android project.
 
 **Note to author:** Add a more detailed description about this plugin here. If your plugin contains multiple actions, make sure to mention them here.
 
@@ -50,4 +50,4 @@ For more information about how the `fastlane` plugin system works, check out the
 ## About `fastlane`
 
 `fastlane` is the easiest way to automate building and releasing your iOS and Android apps. To learn more, check out [fastlane.tools](https://fastlane.tools).
-# fastlane-plugin-increment_version_code
+# fastlane-plugin-increment_version_name

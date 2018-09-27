@@ -1,5 +1,5 @@
 module Fastlane
-  module IncrementVersionCode
+  module IncrementVersionName
     VERSION = "0.4.3"
   end
 end
