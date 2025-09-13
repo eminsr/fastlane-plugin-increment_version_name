@@ -4,10 +4,18 @@
 
 ## Getting Started
 
-This project is a [fastlane](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-increment_version_name`, add it to your project by running:
+This project is a [fastlane](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-increment_version_name`, add it to your project:
+
+1. Locate `Pluginfile` and add following line
 
 ```bash
-fastlane add_plugin increment_version_name
+gem 'fastlane-plugin-increment_version_name', git: 'https://github.com/eminsr/fastlane-plugin-increment_version_name', branch: 'master'
+```
+
+2. Run
+
+```bash
+bundle exec fastlane update_plugins
 ```
 
 ## About increment_version_name
@@ -18,7 +26,7 @@ Increment the version name of your android project.
 
 ## Example
 
-Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`. 
+Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
 
 **Note to author:** Please set up a sample project to make it easy for users to explore what your plugin does. Provide everything that is necessary to try out the plugin in this project (including a sample Xcode/Android project if necessary)
 
@@ -30,7 +38,8 @@ To run both the tests, and code style validation, run
 rake
 ```
 
-To automatically fix many of the styling issues, use 
+To automatically fix many of the styling issues, use
+
 ```
 rubocop -a
 ```
@@ -50,4 +59,5 @@ For more information about how the `fastlane` plugin system works, check out the
 ## About `fastlane`
 
 `fastlane` is the easiest way to automate building and releasing your iOS and Android apps. To learn more, check out [fastlane.tools](https://fastlane.tools).
+
 # fastlane-plugin-increment_version_name
