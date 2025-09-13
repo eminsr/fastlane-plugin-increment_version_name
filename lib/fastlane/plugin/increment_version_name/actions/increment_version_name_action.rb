@@ -48,7 +48,7 @@ module Fastlane
                     end
                     new_version_name = version_array.join(".")
                   when "minor"
-                    version_array[1] = version_array[0] + 1
+                    version_array[1] = version_array[1] + 1
                     version_array[2] = 0 if version_array.length > 2
                     new_version_name = version_array.join(".")
                   when "major"
