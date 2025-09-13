@@ -11,16 +11,16 @@ module Fastlane
       end
       
       def self.run(params)
-        
+
         new_version_name ||= params[:version_name]
         constant_name ||= params[:ext_constant_name]
         gradle_file_path ||= params[:gradle_file_path]
-        
+
         if !File.file?(gradle_file_path)
             UI.message(" -> No file exist at gradle file path: (#{gradle_file_path})!")
             return -1
         end
-        
+
         begin
           foundVersionName = "false"
           temp_file = Tempfile.new('fastlaneIncrementVersionName')
@@ -30,22 +30,31 @@ module Fastlane
                 versionComponents = line.strip.split(' ')
                 current_version = versionComponents[versionComponents.length-1].tr("\"","")
                 if params[:version_name]
-                  UI.verbose("Your current version (#{current_version}) does not respect the format A.B.C") unless current_version =~ /\d.\d.\d/
+                  unless current_version =~ /\A\d+\.\d+(?:\.\d+)?\z/
+                    UI.user_error!("Your current version (#{current_version}) does not respect the format A.B or A.B.C")
+                  end
+                  new_version_name = params[:version_name]
                 else
-                  UI.user_error!("Your current version (#{current_version}) does not respect the format A.B.C") unless current_version =~ /\d+.\d+.\d+/
+                  unless current_version =~ /\A\d+\.\d+(?:\.\d+)?\z/
+                    UI.user_error!("Your current version (#{current_version}) does not respect the format A.B or A.B.C")
+                  end
                   version_array = current_version.split(".").map(&:to_i)
                   case params[:bump_type]
                   when "patch"
-                    version_array[2] = version_array[2] + 1
+                    if version_array.length == 2
+                      version_array[2] = 1
+                    else
+                      version_array[2] = version_array[2] + 1
+                    end
                     new_version_name = version_array.join(".")
                   when "minor"
-                    version_array[1] = version_array[1] + 1
-                    version_array[2] = version_array[2] = 0
+                    version_array[1] = version_array[0] + 1
+                    version_array[2] = 0 if version_array.length > 2
                     new_version_name = version_array.join(".")
                   when "major"
                     version_array[0] = version_array[0] + 1
-                    version_array[1] = version_array[1] = 0
-                    version_array[1] = version_array[2] = 0
+                    version_array[1] = 0
+                    version_array[2] = 0 if version_array.length > 2
                     new_version_name = version_array.join(".")
                   end
                 end
